@@ -16,7 +16,7 @@ from . import metrics
 
 
 CORS_SETTINGS = {
-    "allow_headers": ["Content-Type"],
+    "allow_headers": ["content-type"],
     "allow_methods": ["POST"],
     "allow_origin": "*"
 }
