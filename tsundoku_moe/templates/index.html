@@ -7,12 +7,51 @@
     <title>Tsundoku</title>
     <link rel="shortcut icon" href="{{ url_for ('static', filename='img/favicon.ico') }}" />
 
+    <style>
+        body {
+            background-color: pink;
+        }
+
+        #kirb {
+            position: fixed;
+            color: pink;
+            text-decoration: none;
+            cursor: default;
+            -webkit-touch-callout: none;
+            /* iOS Safari */
+            -webkit-user-select: none;
+            /* Safari */
+            -khtml-user-select: none;
+            /* Konqueror HTML */
+            -moz-user-select: none;
+            /* Old versions of Firefox */
+            -ms-user-select: none;
+            /* Internet Explorer/Edge */
+            user-select: none;
+            /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+        }
+        }
+    </style>
+
 </head>
 
 <body>
-    <a href="https://yert.pink/kirby.png">
+    <div id="kirb" onclick="window.location.href = 'https://yert.pink/kirby.png'">
         <h1>See Kirby</h1>
-    </a>
+    </div>
 </body>
+
+<script>
+    function getRandomInt() {
+        return Math.random() * 90;
+    }
+
+    window.onload = function () {
+        let kirb = document.getElementById("kirb");
+        kirb.style.top = getRandomInt().toString() + "vh";
+        kirb.style.left = getRandomInt().toString() + "vw";
+    }
+</script>
 
 </html>
