@@ -1,0 +1,13 @@
+PSQL_CONNECT = {
+    "database": "tsundoku_mainsite",
+    "user": "postgres",
+    "password": "password",
+    "host": "localhost",
+    "port": 5432
+}
+
+WEBHOOK_URLS = {
+    "GENERAL": "discord webhook url here",
+    "FEATURE": "discord webhook url here",
+    "BUG": "discord webhook url here"
+}
