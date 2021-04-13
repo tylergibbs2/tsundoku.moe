@@ -1,6 +1,9 @@
 from quart import current_app as app
 
-from config import WEBHOOK_URLS
+try:
+    import config
+except ImportError:
+    import heroku_config as config
 
 
 async def send_general(data):
@@ -10,7 +13,7 @@ async def send_general(data):
         "color": 3315932
     }
     await app.session.post(
-        WEBHOOK_URLS["general"],
+        config.WEBHOOK_URLS["general"],
         headers={
             "Content-Type": "application/json"
         },
@@ -26,7 +29,7 @@ async def send_feature(data):
         "color": 3306460
     }
     await app.session.post(
-        WEBHOOK_URLS["feature"],
+        config.WEBHOOK_URLS["feature"],
         headers={
             "Content-Type": "application/json"
         },
@@ -46,7 +49,7 @@ async def send_bug(data):
         ]
     }
     await app.session.post(
-        WEBHOOK_URLS["bug"],
+        config.WEBHOOK_URLS["bug"],
         headers={
             "Content-Type": "application/json"
         },

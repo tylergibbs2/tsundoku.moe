@@ -1,12 +1,15 @@
 import aiohttp
 import asyncio
-import os
 import typing
 
 import asyncpg
 from quart import Quart, request, Response
 
-import config
+try:
+    import config
+except ImportError:
+    import heroku_config as config
+
 from . import feedback
 from . import metrics
 
