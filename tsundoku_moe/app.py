@@ -3,7 +3,7 @@ import asyncio
 import typing
 
 import asyncpg
-from quart import Quart, request, Response
+from quart import Quart, request, Response, render_template
 from quart_cors import cors
 
 try:
@@ -24,6 +24,11 @@ CORS_SETTINGS = {
 
 app = Quart("tsundoku_moe")
 app = cors(app, **CORS_SETTINGS)
+
+
+@app.route("/", methods=["GET"])
+async def index():
+    return await render_template("index.html")
 
 
 @app.route("/feedback", methods=["POST"])
