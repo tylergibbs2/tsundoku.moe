@@ -1,5 +1,6 @@
 import aiohttp
 import asyncio
+import os
 import typing
 
 import asyncpg
@@ -55,7 +56,7 @@ async def metrics_route(client: str) -> dict:
 async def setup_db() -> None:
     loop = asyncio.get_event_loop()
 
-    app.db = await asyncpg.create_pool(loop=loop, **config.PSQL_CONNECT)
+    app.db = await asyncpg.create_pool(loop=loop, dsn=config.PSQL_DSN)
 
 @app.before_serving
 async def setup_session() -> None:

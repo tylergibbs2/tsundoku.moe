@@ -1,13 +1,16 @@
-PSQL_CONNECT = {
-    "database": "tsundoku_mainsite",
-    "user": "postgres",
-    "password": "password",
-    "host": "localhost",
-    "port": 5432
-}
+import os
 
-WEBHOOK_URLS = {
-    "GENERAL": "discord webhook url here",
-    "FEATURE": "discord webhook url here",
-    "BUG": "discord webhook url here"
-}
+if os.getenv("HEROKU_ENV"):
+    WEBHOOK_URLS = {
+        "general": os.getenv("WEBHOOK_GENERAL"),
+        "feature": os.getenv("WEBHOOK_FEATURE"),
+        "bug": os.getenv("WEBHOOK_BUG"),
+    }
+    PSQL_DSN = os.getenv("DATABASE_URL")
+else:
+    WEBHOOK_URLS = {
+        "general": "discord webhook url here",
+        "feature": "discord webhook url here",
+        "bug": "discord webhook url here"
+    }
+    PSQL_DSN = "postgres://postgres:password@localhost:5432/tsundoku_mainsite"
