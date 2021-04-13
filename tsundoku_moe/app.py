@@ -4,6 +4,7 @@ import typing
 
 import asyncpg
 from quart import Quart, request, Response
+from quart_cors import cors
 
 try:
     import config
@@ -13,18 +14,20 @@ except ImportError:
 from . import feedback
 from . import metrics
 
+
+CORS_SETTINGS = {
+    "allow_headers": ["Content-Type"],
+    "allow_methods": ["POST"],
+    "allow_origin": "*"
+}
+
+
 app = Quart("tsundoku_moe")
+app = cors(app, **CORS_SETTINGS)
 
 
-@app.route("/feedback", methods=["POST", "OPTIONS"])
+@app.route("/feedback", methods=["POST"])
 async def feedback_route() -> typing.Union[Response, dict, tuple]:
-    if request.method == "OPTIONS":
-        resp = Response({})
-        resp.headers["Access-Control-Allow-Origin"] = "*"
-        resp.headers["Access-Control-Allow-Methods"] = "POST"
-        resp.headers["Access-Control-Allow-Headers"] = "Content-Type"
-        return resp
-
     data = await request.get_json()
 
     type_ = data.get("type")
@@ -42,15 +45,8 @@ async def feedback_route() -> typing.Union[Response, dict, tuple]:
     return data
 
 
-@app.route("/metrics/<string:client>", methods=["POST", "OPTIONS"])
+@app.route("/metrics/<string:client>", methods=["POST"])
 async def metrics_route(client: str) -> dict:
-    if request.method == "OPTIONS":
-        resp = Response({})
-        resp.headers["Access-Control-Allow-Origin"] = "*"
-        resp.headers["Access-Control-Allow-Methods"] = "POST"
-        resp.headers["Access-Control-Allow-Headers"] = "Content-Type"
-        return resp
-
     data = await request.get_json()
     return await metrics.handle(client, data)
 
