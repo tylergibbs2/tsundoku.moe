@@ -1,6 +1,61 @@
 {
     "components": {
+        "responses": {
+            "BadRequest": {
+                "description": "The request body was invalid.",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Error"
+                        }
+                    }
+                }
+            },
+            "NotFound": {
+                "description": "The requested resource was not found.",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Error"
+                        }
+                    }
+                }
+            },
+            "Unauthorized": {
+                "description": "You are unauthorized to access this resource.",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Error"
+                        }
+                    }
+                }
+            },
+            "ServerError": {
+                "description": "The server encountered an unexpected error.",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Error"
+                        }
+                    }
+                }
+            }
+        },
         "schemas": {
+            "Error": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "integer",
+                        "description": "HTTP response code."
+                    },
+                    "error": {
+                        "type": "string",
+                        "description": "Error message."
+                    }
+                }
+            },
             "Show": {
                 "type": "object",
                 "required": [
@@ -252,7 +307,54 @@
                                 "completed"
                             ]
                         },
-                        "example": ["downloading", "completed"]
+                        "example": [
+                            "downloading",
+                            "completed"
+                        ]
+                    }
+                }
+            },
+            "NyaaSearchResult": {
+                "type": "object",
+                "properties": {
+                    "show_id": {
+                        "type": "integer",
+                        "description": "Show ID that the result is for.",
+                        "example": 42
+                    },
+                    "title": {
+                        "type": "string",
+                        "description": "Title of the search result.",
+                    },
+                    "published": {
+                        "type": "string",
+                        "description": "Prettily formatted date string of publish date.",
+                        "example": "20 Aug 2020"
+                    },
+                    "torrent_link": {
+                        "type": "string",
+                        "description": "URL to the result's torrent file.",
+                        "format": "url"
+                    },
+                    "post_link": {
+                        "type": "string",
+                        "description": "URL to the post on Nyaa.",
+                        "format": "url",
+                    },
+                    "size": {
+                        "type": "string",
+                        "description": "Prettily formatted string of the total file size.",
+                        "example": "31.2 GiB"
+                    },
+                    "seeders": {
+                        "type": "integer",
+                        "description": "Total number of active seeders.",
+                        "example": 33
+                    },
+                    "leechers": {
+                        "type": "integer",
+                        "description": "Total number of active leechers.",
+                        "example": 5
                     }
                 }
             }

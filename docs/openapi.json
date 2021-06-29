@@ -25,332 +25,40 @@
   ],
   "paths": {
     "/shows": {
-      "get": {
-        "tags": [
-          "Shows"
-        ],
-        "description": "Returns all shows that are stored in the database.",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "description": "Response status code.",
-                      "example": "200"
-                    },
-                    "result": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "components.json#/components/schemas/Show"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Shows"
-        ],
-        "description": "Adds a new show to the database.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "required": [
-                  "title",
-                  "season"
-                ],
-                "properties": {
-                  "title": {
-                    "type": "string",
-                    "description": "New show title.",
-                    "example": "Attack on Titan"
-                  },
-                  "desired_format": {
-                    "type": "string",
-                    "description": "New show desired format.",
-                    "example": "{n} - {s00e00}"
-                  },
-                  "desired_folder": {
-                    "type": "string",
-                    "description": "New show desired folder.",
-                    "example": "/target/{n}/Season {s00}"
-                  },
-                  "season": {
-                    "type": "integer",
-                    "description": "New show season.",
-                    "example": "1"
-                  },
-                  "episode_offset": {
-                    "type": "integer",
-                    "description": "New show episode offset.",
-                    "example": "0"
-                  },
-                  "watch": {
-                    "type": "boolean",
-                    "description": "Whether or not to watch the new show.",
-                    "example": true
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "description": "Response status code.",
-                      "example": "200"
-                    },
-                    "result": {
-                      "$ref": "components.json#/components/schemas/Show"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid arguments when creating show.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "description": "Response status code.",
-                      "example": "400"
-                    },
-                    "error": {
-                      "type": "string",
-                      "description": "Response error message.",
-                      "example": "Episode offset is not an integer."
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+      "$ref": "apis/shows/all.json"
+    },
+    "/shows/check": {
+      "$ref": "apis/shows/check.json"
+    },
+    "/shows/seen": {
+      "$ref": "apis/shows/seen.json"
     },
     "/shows/{id}": {
-      "get": {
-        "tags": [
-          "Shows"
-        ],
-        "description": "Returns a show with the specified ID.",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "description": "Response status code.",
-                      "example": "200"
-                    },
-                    "result": {
-                      "$ref": "components.json#/components/schemas/Show"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Show with passed ID not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "description": "Response status code.",
-                      "example": "404"
-                    },
-                    "error": {
-                      "type": "string",
-                      "description": "Response error message.",
-                      "example": "Show with passed ID not found."
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Shows"
-        ],
-        "description": "Updates an existing show in the database.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "properties": {
-                  "title": {
-                    "type": "string",
-                    "description": "New show title.",
-                    "example": "Attack on Titan"
-                  },
-                  "desired_format": {
-                    "type": "string",
-                    "description": "New show desired format.",
-                    "example": "{n} - {s00e00}"
-                  },
-                  "desired_folder": {
-                    "type": "string",
-                    "description": "New show desired folder.",
-                    "example": "/target/{n}/Season {s00}"
-                  },
-                  "season": {
-                    "type": "integer",
-                    "description": "New show season.",
-                    "example": "1"
-                  },
-                  "episode_offset": {
-                    "type": "integer",
-                    "description": "New show episode offset.",
-                    "example": "0"
-                  },
-                  "watch": {
-                    "type": "boolean",
-                    "description": "Whether or not to watch the new show.",
-                    "example": true
-                  },
-                  "kitsu_id": {
-                    "type": "integer",
-                    "description": "New Kitsu metadata ID for the show.",
-                    "example": 7442
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "description": "Response status code.",
-                      "example": "200"
-                    },
-                    "result": {
-                      "$ref": "components.json#/components/schemas/Show"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid arguments when updating show.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "description": "Response status code.",
-                      "example": "400"
-                    },
-                    "error": {
-                      "type": "string",
-                      "description": "Response error message.",
-                      "example": "Episode offset is not an integer."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Show with passed ID not found.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "description": "Response status code.",
-                      "example": "404"
-                    },
-                    "error": {
-                      "type": "string",
-                      "description": "Response error message.",
-                      "example": "Show with passed ID not found."
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Shows"
-        ],
-        "description": "Deletes a show with a specified ID.",
-        "responses": {
-          "200": {
-            "description": "The deletion request was successfully received.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "integer",
-                      "description": "Response status code.",
-                      "example": "200"
-                    },
-                    "result": {
-                      "type": "boolean",
-                      "description": "If the deletion request was received.",
-                      "example": true
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+      "$ref": "apis/shows/by_id.json"
+    },
+    "/shows/{id}/cache": {
+      "$ref": "apis/shows/delete_cache.json"
+    },
+    "/shows/{show_id}/entries": {
+      "$ref": "apis/entries/all.json"
+    },
+    "/shows/{show_id}/entries/{entry_id}": {
+      "$ref": "apis/entries/by_id.json"
+    },
+    "/shows/{show_id}/webhooks": {
+      "$ref": "apis/webhookshow/all.json"
+    },
+    "/shows/{show_id}/webhooks/{base_id}": {
+      "$ref": "apis/webhookshow/by_id.json"
+    },
+    "/webhooks": {
+      "$ref": "apis/webhookbase/all.json"
+    },
+    "/webhooks/{id}": {
+      "$ref": "apis/webhookbase/by_id.json"
+    },
+    "/nyaa": {
+      "$ref": "apis/nyaa/general.json"
     }
   }
 }
