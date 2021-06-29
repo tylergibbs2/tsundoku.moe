@@ -18,7 +18,7 @@
                     "id_": {
                         "type": "integer",
                         "readOnly": true,
-                        "example": "42"
+                        "example": 42
                     },
                     "title": {
                         "type": "string",
@@ -37,12 +37,12 @@
                     "season": {
                         "description": "Season number for formatting.",
                         "type": "integer",
-                        "example": "1"
+                        "example": 1
                     },
                     "episode_offset": {
                         "description": "Positive or negative value for offsetting the episode number when formatting.",
                         "type": "integer",
-                        "example": "0"
+                        "example": 0
                     },
                     "watch": {
                         "description": "Whether or not to check RSS feeds for this show.",
@@ -86,12 +86,12 @@
                         "description": "ID of the show that this object relates to.",
                         "type": "integer",
                         "readOnly": true,
-                        "example": "42"
+                        "example": 42
                     },
                     "kitsu_id": {
                         "description": "ID of the show on Kitsu.",
                         "type": "integer",
-                        "example": "7442"
+                        "example": 7442
                     },
                     "slug": {
                         "description": "Shortened slug of show title.",
@@ -130,17 +130,17 @@
                     "id": {
                         "description": "Internal entry identifier.",
                         "type": "integer",
-                        "example": "120"
+                        "example": 120
                     },
                     "show_id": {
                         "description": "ID of the show that this object relates to.",
                         "type": "integer",
-                        "example": "42"
+                        "example": 42
                     },
                     "episode": {
                         "description": "Episode that this entry relates to.",
                         "type": "integer",
-                        "example": "3"
+                        "example": 3
                     },
                     "state": {
                         "description": "Internal state of the entry.",
@@ -185,7 +185,7 @@
                     "base_id": {
                         "description": "ID of the webhook base",
                         "type": "integer",
-                        "example": "5"
+                        "example": 5
                     },
                     "name": {
                         "description": "Name of the webhook base.",
@@ -230,13 +230,13 @@
                         "description": "ID of the show that this webhook belongs to.",
                         "type": "integer",
                         "readOnly": true,
-                        "example": "42"
+                        "example": 42
                     },
                     "base": {
                         "description": "The webhook base that this webhook belongs to.",
                         "$ref": "#/components/schemas/WebhookBase",
                         "readOnly": true,
-                        "example": "5"
+                        "example": 5
                     },
                     "triggers": {
                         "description": "List of actions that trigger this webhook.",
