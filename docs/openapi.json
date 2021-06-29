@@ -26,6 +26,9 @@
   "paths": {
     "/shows": {
       "get": {
+        "tags": [
+          "Shows"
+        ],
         "description": "Returns all shows that are stored in the database.",
         "responses": {
           "200": {
@@ -54,6 +57,9 @@
         }
       },
       "post": {
+        "tags": [
+          "Shows"
+        ],
         "description": "Adds a new show to the database.",
         "requestBody": {
           "required": true,
@@ -148,6 +154,9 @@
     },
     "/shows/{id}": {
       "get": {
+        "tags": [
+          "Shows"
+        ],
         "description": "Returns a show with the specified ID.",
         "responses": {
           "200": {
@@ -195,6 +204,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Shows"
+        ],
         "description": "Updates an existing show in the database.",
         "requestBody": {
           "required": true,
@@ -310,6 +322,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Shows"
+        ],
         "description": "Deletes a show with a specified ID.",
         "responses": {
           "200": {
