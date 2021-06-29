@@ -17,39 +17,47 @@
                 "properties": {
                     "id_": {
                         "type": "integer",
-                        "readOnly": true
+                        "readOnly": true,
+                        "example": "42"
                     },
                     "title": {
-                        "type": "string"
+                        "type": "string",
+                        "example": "Attack on Titan"
                     },
                     "desired_format": {
                         "description": "Desired file formatting.",
-                        "type": "string"
+                        "type": "string",
+                        "example": "{n} - {s00e00}"
                     },
                     "desired_folder": {
                         "description": "Desired destination folder.",
-                        "type": "string"
+                        "type": "string",
+                        "example": "/target/{n}/Season {s00}"
                     },
                     "season": {
                         "description": "Season number for formatting.",
-                        "type": "integer"
+                        "type": "integer",
+                        "example": "1"
                     },
                     "episode_offset": {
                         "description": "Positive or negative value for offsetting the episode number when formatting.",
-                        "type": "integer"
+                        "type": "integer",
+                        "example": "0"
                     },
                     "watch": {
                         "description": "Whether or not to check RSS feeds for this show.",
-                        "type": "boolean"
+                        "type": "boolean",
+                        "example": true
                     },
                     "created_at": {
                         "description": "When the show was added to the database as an ISO 8601 formatted string.",
                         "type": "string",
-                        "readOnly": true
+                        "readOnly": true,
+                        "example": "2021-04-11T06:37:36.812658"
                     },
                     "metadata": {
                         "description": "Object containing general show metadata.",
-                        "$ref": "#/components/schemas/Metadata"
+                        "$ref": "#/components/schemas/Metadata",
                     },
                     "entries": {
                         "type": "array",
@@ -76,15 +84,18 @@
                     "show_id": {
                         "description": "ID of the show that this object relates to.",
                         "type": "integer",
-                        "readOnly": true
+                        "readOnly": true,
+                        "example": "42"
                     },
                     "kitsu_id": {
                         "description": "ID of the show on Kitsu.",
-                        "type": "integer"
+                        "type": "integer",
+                        "example": "7442"
                     },
                     "slug": {
                         "description": "Shortened slug of show title.",
-                        "type": "string"
+                        "type": "string",
+                        "example": "attack-on-titan"
                     },
                     "status": {
                         "description": "Airing status of the show.",
@@ -95,11 +106,13 @@
                             "tba",
                             "unreleased",
                             "upcoming"
-                        ]
+                        ],
+                        "example": "finished"
                     },
                     "poster": {
                         "description": "URL to a poster image of the show.",
-                        "type": "string"
+                        "type": "string",
+                        "example": "https://media.kitsu.io/anime/poster_images/7442/large.jpg"
                     }
                 }
             },
@@ -115,15 +128,18 @@
                 "properties": {
                     "id": {
                         "description": "Internal entry identifier.",
-                        "type": "integer"
+                        "type": "integer",
+                        "example": "120"
                     },
                     "show_id": {
                         "description": "ID of the show that this object relates to.",
-                        "type": "integer"
+                        "type": "integer",
+                        "example": "42"
                     },
                     "episode": {
                         "description": "Episode that this entry relates to.",
-                        "type": "integer"
+                        "type": "integer",
+                        "example": "3"
                     },
                     "state": {
                         "description": "Internal state of the entry.",
@@ -134,19 +150,23 @@
                             "renamed",
                             "moved",
                             "completed"
-                        ]
+                        ],
+                        "example": "completed"
                     },
                     "torrent_hash": {
                         "description": "Hash of the torrent for this entry.",
-                        "type": "string"
+                        "type": "string",
+                        "example": "1d9d488ef8ef34c0e9a3d23198f0771ea1fb0725"
                     },
                     "file_path": {
                         "description": "Location of the entry on disk",
-                        "type": "string"
+                        "type": "string",
+                        "example": "/target/Attack on Titan/Season 01/Attack on Titan - s01e03.mkv"
                     },
                     "last_update": {
                         "description": "Last update time of the entry as an ISO 8601 formatted string.",
-                        "type": "string"
+                        "type": "string",
+                        "example": "2021-04-11T06:40:29.874604"
                     }
                 }
             },
@@ -162,11 +182,13 @@
                 "properties": {
                     "base_id": {
                         "description": "ID of the webhook base",
-                        "type": "integer"
+                        "type": "integer",
+                        "example": "5"
                     },
                     "name": {
                         "description": "Name of the webhook base.",
-                        "type": "string"
+                        "type": "string",
+                        "example": "My server - #tsundoku"
                     },
                     "service": {
                         "description": "Service that this webhook base posts to.",
@@ -174,19 +196,23 @@
                         "enum": [
                             "discord",
                             "slack"
-                        ]
+                        ],
+                        "example": "discord"
                     },
                     "url": {
                         "description": "URL that this webhook base posts to.",
-                        "type": "string"
+                        "type": "string",
+                        "example": "https://discord.com/api/webhooks/123456789123456789/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
                     },
                     "content_fmt": {
                         "description": "Content that will be formatted with entry information.",
-                        "type": "string"
+                        "type": "string",
+                        "example": "{name}, episode {episode}, has been marked as {state}"
                     },
                     "valid": {
                         "description": "Whether or not this webhook base is able to be posted to.",
-                        "type": "boolean"
+                        "type": "boolean",
+                        "example": true
                     }
                 }
             },
@@ -201,12 +227,14 @@
                     "show_id": {
                         "description": "ID of the show that this webhook belongs to.",
                         "type": "integer",
-                        "readOnly": true
+                        "readOnly": true,
+                        "example": "42"
                     },
                     "base": {
                         "description": "The webhook base that this webhook belongs to.",
                         "$ref": "#/components/schemas/WebhookBase",
-                        "readOnly": true
+                        "readOnly": true,
+                        "example": "5"
                     },
                     "triggers": {
                         "description": "List of actions that trigger this webhook.",
@@ -221,7 +249,8 @@
                                 "moved",
                                 "completed"
                             ]
-                        }
+                        },
+                        "example": ["downloading", "completed"]
                     }
                 }
             }
