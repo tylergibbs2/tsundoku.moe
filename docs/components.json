@@ -324,7 +324,7 @@
                     },
                     "title": {
                         "type": "string",
-                        "description": "Title of the search result.",
+                        "description": "Title of the search result."
                     },
                     "published": {
                         "type": "string",
@@ -339,7 +339,7 @@
                     "post_link": {
                         "type": "string",
                         "description": "URL to the post on Nyaa.",
-                        "format": "url",
+                        "format": "url"
                     },
                     "size": {
                         "type": "string",
