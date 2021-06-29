@@ -1,0 +1,48 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Tsundoku",
+    "version": "0.0.1",
+    "license": {
+      "name": "Mozilla Public License 2.0",
+      "url": "https://www.mozilla.org/en-US/MPL/2.0/"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://{host}:{port}/api/v1",
+      "variables": {
+        "host": {
+          "default": "localhost",
+          "description": "The location Tsundoku is hosted at."
+        },
+        "port": {
+          "default": "6439",
+          "description": "The port that Tsundoku is bound to."
+        }
+      }
+    }
+  ],
+  "paths": {
+    "/shows": {
+      "get": {
+        "description": "Returns all shows that are stored in the database.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "components.json#/components/schemas/Show"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
