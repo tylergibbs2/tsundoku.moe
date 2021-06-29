@@ -50,14 +50,15 @@
                         "example": true
                     },
                     "created_at": {
-                        "description": "When the show was added to the database as an ISO 8601 formatted string.",
+                        "description": "When the show was added to the database.",
                         "type": "string",
+                        "format": "date-time",
                         "readOnly": true,
                         "example": "2021-04-11T06:37:36.812658"
                     },
                     "metadata": {
                         "description": "Object containing general show metadata.",
-                        "$ref": "#/components/schemas/Metadata",
+                        "$ref": "#/components/schemas/Metadata"
                     },
                     "entries": {
                         "type": "array",
@@ -164,8 +165,9 @@
                         "example": "/target/Attack on Titan/Season 01/Attack on Titan - s01e03.mkv"
                     },
                     "last_update": {
-                        "description": "Last update time of the entry as an ISO 8601 formatted string.",
+                        "description": "Last update time of the entry.",
                         "type": "string",
+                        "format": "date-time",
                         "example": "2021-04-11T06:40:29.874604"
                     }
                 }
